@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block meta %}
+    {% endblock meta %}
+    <meta property="fb:app_id" content="703830532986439"/>
+    <meta property="og:type" content="website"/>
+
+    <link rel="shortcut icon" href="assets/img/ico/icons8-bookmark-32.png">
+    <!-- Bootstrap Core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/animate.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="assets/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/pe-icons.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="assets/js/jquery.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+           'use strict';
+        jQuery('#headerwrap').backstretch([
+          "assets/img/bg/bg1.jpg",
+          "assets/img/bg/bg2.jpg",
+          "assets/img/bg/bg3.jpg"
+        ], {duration: 8000, fade: 500});
+    });
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142103256-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-142103256-2');
+</script>
+
+
+
+    </script>
+
+</head>
+
+<body id="page-top" class="archive">
+
+<div class="preloader">
+    <div class="preloader-img">
+        <img src="assets/img/loading-bars.svg" width="100" alt="Loading icon"/>
+    </div>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-shrink bounceInDown">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">{{ site.site_title }}</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div id="search-wrapper">
+    <button type="button" class="close">×</button>
+    <form>
+        <input type="search" value="" placeholder="type keyword(s) here"/>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>
+
+<!-- Header -->
+{% block content %}
+{% endblock content %}
+
+<footer class="divider-wrapper-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <span class="copyright wow fadeInUp">{{ site.site_title }}</span>
+            </div>
+            <div class="col-md-6">
+                <ul class="list-inline social-buttons wow fadeInUp">
+                    <li><a class="twitter" href="https://twitter.com/officiialPrazol" target="_blank"><i
+                            class="fa fa-twitter"></i></a>
+                    </li>
+                    <li><a class="facebook" href="https://www.facebook.com/officialprajwol" target="_blank"><i
+                            class="fa fa-facebook"></i></a>
+                    </li>
+                    <li><a class="google" href="https://prajwolkc.com.np/" target="_blank"><i
+                            class="fa fa-google-plus"></i></a>
+                    </li>
+                    <li><a class="linkedin" href="https://www.linkedin.com/in/prajwol-k-c-55282173/" target="_blank"><i
+                            class="fa fa-linkedin"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="assets/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="assets/js/plugins.js"></script>
+
+<!-- Plugins -->
+<!--    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>-->
+<script src="assets/js/jqBootstrapValidation.js"></script>
+
+<!-- Custom JavaScript -->
+<script src="assets/js/init.js"></script>
+<script id="dsq-count-scr" src="//prajwol-kc-com-np.disqus.com/count.js" async></script>
+</body>
+
+</html>

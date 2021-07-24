@@ -1,0 +1,67 @@
+title: Making Policy for Laravel Application Using Gates and Authorization
+date: 2020-04-18 16:50:00
+author: prajwolkc
+image: blog-images/laravel-policy.jpg
+short: Create custom authorization policies under laravel application for preventing unauthorized access to resources. 
+tags: php,laravel,web development,policies,gates,authorization,
+full: |
+     <div class="entry-content">
+     <p>Authorization is a vital part of any application. Not every content or resources be accessed by every logged in users. We have to make sure the resources or the operations are to be executed by the authentic users, prevent them to access other user content being accessed. </p> <p> To make sure we implement this on Laravel while creating web application we have a very decent approach that is provided by Laravel. As depicted on the <a rel="noreferrer noopener" href="http://In addition to providing authentication services out of the box, Laravel also provides a simple way to authorize user actions against a given resource. Like authentication, Laravel's approach to authorization is simple, and there are two primary ways of authorizing actions: gates and policies." target="_blank">Laravel Doc</a>, </p> <blockquote class="wp-block-quote"><p>In addition to providing&nbsp;<a href="https://laravel.com/docs/7.x/authentication">authentication</a>&nbsp;services out of the box, Laravel also provides a simple 
+     way to authorize user actions against a given resource. Like authentication, Laravel’s approach to authorization is simple, and there are two primary ways of authorizing actions: gates and policies.</p></blockquote> 
+     <p><img src='assets/blog-images/laravel-policy.jpg' class="img-responsive cut-by-50" />
+     </p>  <p>We therefore here build a simple way to create a policy for your resource by just simple command and registering it with our provider. First we issue a command for creating a policy, Here is TaskPolicy is the name.</p> <pre class="wp-block-code"><code>php artisan make:policy TaskPolicy</code></pre> <p>If we want a more specific policy to our model then its simple just, lets say for Task Model</p> <pre class="wp-block-code"><code>php artisan make:policy TaskPolicy --model=Task</code></pre> <p>You will get a new file under appPoliciesTaskPolicy.php<br>Now we have to register to our app so that we let it know we have a policy. For that just goto appProvidersAuthServiceProvider.php and map your newly created policy to your model Task</p> <pre class="wp-block-code"><code>// make sure this is at the top 
+     use App\Policies\TaskPolicy;
+     use AppTask;
+     
+     protected $policies = [
+        Task::class =&gt; TaskPolicy::class,
+     ];</code>
+     </pre>
+     <p>Not let see our TaskPolicy file, you will see something like this </p> 
+     <pre class="wp-block-preformatted">&lt;?php
+     namespace App\Policies\Policy;
+     use App\Task;
+     use App\User;
+     use IlluminateAuthAccessHandlesAuthorization;
+     
+     class TaskPolicy
+     { use HandlesAuthorization;
+     <em>/**
+     * Determine whether the user can view any tasks.
+     * * </em><strong><em>@param  </em></strong><em>AppUser  $user * </em><strong><em>@return </em></strong><em>mixed
+     */
+     </em>public function viewAny(User $user)
+     { return false;
+     } <em>/**
+     * Determine whether the user can view the task.
+     * * </em><strong><em>@param  </em></strong><em>AppUser  $user * </em><strong><em>@param  </em></strong><em>AppTask  $task * </em><strong><em>@return </em></strong><em>mixed
+     */
+     </em>public function view(User $user, Task $task)
+     { //
+     } <em>.......</em>
+     }</pre>
+     <p>For each resource action we can see the action and it will guard the request from the user to prevent unauthorized access. For example, to view the post only to the user who created and not others we modify the view method to this. We have two params User and Task. $user gives the currently logged in user object and $task object is the currently selected task via model (user dd for both to make sure what they are). </p> 
+     <pre>
+     
+     public function view(User $user, Task $task){ 
+        // check if current logged userid = task creator user
+        return $user-&gt;id == $task-&gt;user_id;
+     } 
+     </pre>
+     
+     <p>Now we have a policy we need to check this policy if the task model is viewed by the owner or not. This can be done via various ways as listed on the document but here let us do this by controller method. In your show method of TaskController.php (You controller file ), just use this </p> 
+     <pre>
+     public function show(Task $task) { 
+        $this-&gt;authorize('view', $task); // view is the method that is written on $task 
+        return view('admin.task.show', [ 'task' =&gt; $task, ]);
+     }
+     </pre><p>That’s it, now the task can be viewed only by the created/owner. Now you can play it around with your own logic for each action. But remember to use make use of ‘authorize’. We can also do that from using Gates like this </p> 
+     <pre>return Gate::allows('view', $this-&gt;task);</pre> <p> or on your custom request </p>
+     <pre>
+     public function authorize(): bool 
+     { 
+        return Gate::allows('view', $this-&gt;task);
+     }</pre>
+     <p>Finally authorization is implemented using policies and gates. Do try it on your applications. </p>
+     </div>
+     

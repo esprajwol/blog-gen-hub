@@ -1,0 +1,4 @@
+Jinja2==2.11.1
+python-slugify==4.0.0
+PyYAML==5.3.1
+timeago==1.0.13

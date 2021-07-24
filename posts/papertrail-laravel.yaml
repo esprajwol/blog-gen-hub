@@ -1,0 +1,28 @@
+title: Logging with Paper Trail on Laravel
+date: 2020-04-10 18:50:00
+author: prajwolkc
+image: blog-images/papertrail.jpg
+short: A modern approach of logging laravel events on paper trail application for real time monitering updates.
+tags: papertrail,laravel,logging,errors,papertrailapp,web development,real time logging,errors log,
+full: <p>One of the most basic task of web development (or any other system development) is to log each and every events may be that is errors logs or any events. This will be beneficial for monitoring application. For this we have a online service to logs events known as <a href="https://papertrailapp.com/" target="_blank"><strong>Papertrail</strong></a>. The logging support over a large platform but here we will only show a demo coding setup for logging laravel logs in a precise way. What it more exciting is that the service offers a real time logging mechanism which is very fruitful for gathering logs in no time. This gives you a live updating view of your logs.</p>
+  <p>Just signup/login to the service and get the URL and PORT which will be unique to your account. You will find the URL and port for your Papertrail log destination while logged into find it. Just put that URL and port in the .env variables PAPERTRAIL_URL and PAPERTRAIL_PORT.</p>
+  <p>On Laravel version over 6.x there is out of the box method of integration of this service which is very easy and precise. Just two lines of values are enough to setup the papertrail app. You can also refer the <a href="https://laravel.com/docs/7.x/logging#building-log-stacks" target="_blank">laravel official logging docs</a> for this. On the logging config just enable the papertrail logging driver wherether on stack or individually.  </p>
+ <p>.env </p>
+  <code>
+  PAPERTRAIL_URL=thisisurl
+  PAPERTRAIL_PORT=5264
+  </code> <p>config/logging.php </p>
+  <p><code>
+      'papertrail' => [
+            'driver' => 'monolog',
+            'level' => 'error',
+            'handler' => SyslogUdpHandler::class,
+            'handler_with' => [
+                'host' => env('PAPERTRAIL_URL'),
+                'port' => env('PAPERTRAIL_PORT'),
+            ],
+        ],
+  </code></p>
+  <p><img src='assets/blog-images/papertrail.jpg' class="img-responsive cut-by-50"  /></p>
+  <p>Finally when there are some logging events it will automatically seen in the events of papertrail dashboard. You can also follow the papertrail integration link for PHP as well as it supports many other platform easily. </p><p>It uses socket to send the event to papertrail app so make sure you system has socket extensions. On PHP, just open the socket extension on your corresponding web server</p>
+  <p>You can check the <a href="https://www.papertrail.com/plans/" target="_blank">pricing</a> which also give a basic free version with no credit card required</p>

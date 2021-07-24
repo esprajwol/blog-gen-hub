@@ -1,0 +1,127 @@
+{% extends "layout/base.html" %}
+
+{% block meta %}
+<title>{{ blog.title }} - {{ site.site_title }}</title>
+<meta name="description" content="{{ blog.short }}">
+<meta name="author" content="{{ blog.author }}">
+<meta name="keywords" content="{{ blog.tags }}">
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="{{ blog.title }}">
+<meta property="og:description" content="{{ blog.short }}">
+<meta property="og:image" content="{{ blog.image }}">
+<meta property="og:url" content="{{ blog.url }}">
+
+<meta name="twitter:title" content="{{ blog.title }}">
+<meta name="twitter:description" content="{{ blog.short }}">
+<meta name="twitter:image" content="{{ blog.image }}">
+<meta name="twitter:card" content="summary_large_image">
+
+{% endblock meta %}
+
+{% block content %}
+
+<!-- Single Section -->
+<section>
+    <div class="section-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="post-content" class="gap row wow fadeInUp" data-wow-delay="0s">
+                        <h1 class="text-center">{{ blog.title }}</h1>
+
+
+                        <!--   <img src="{{ blog.image }}" class="img-responsive" />-->
+
+                        <div class="col-md-12">
+
+                            {{ blog.full }}
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <ul class="list-inline post-meta-list">
+                                <li><p class="text-muted"><i class="pe-7s-folder"></i> <a href="#" title="">Tech</a></p>
+                                </li>
+                                <li><p class="text-muted"><i class="pe-7s-clock"></i> <a href="#" title="">{{ blog.date
+                                    }}</a></p></li>
+                                <li><p class="text-muted"><i class="pe-7s-user"></i> <a href="#" title="">{{ blog.author
+                                    }}</a></p></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 sharing">
+                            <div class="btn-group sharing-btns">
+                                <button class="btn btn-default disabled">Share:</button>
+                                <a class="btn btn-default facebook" target="_blank" title="On Facebook"
+                                   href="http://www.facebook.com/sharer.php?u={{ blog.url}}">
+                                    <i class="fa fa-facebook fa-lg fb"></i>
+                                </a>
+                                <a class="btn btn-default twitter" target="_blank" title="On Twitter"
+                                   href="http://twitter.com/share?url={{ blog.url}}&text={{ blog.short}}">
+                                    <i class="fa fa-twitter fa-lg tw"></i>
+                                </a>
+                                <a class="btn btn-default google" target="_blank" title="On Google Plus"
+                                   href="https://plusone.google.com/_/+1/confirm?hl=en&url={{ blog.url}}">
+                                    <i class="fa fa-google-plus fa-lg google"></i>
+                                </a>
+                                <a class="btn btn-default pinterest" target="_blank" title="Pin It"
+                                   href="http://www.pinterest.com/pin/create/button/?url={{ blog.url}}&media={{ blog.image}}">
+                                    <i class="fa fa-pinterest fa-lg pinterest"></i>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="gap">
+
+
+                    <div id="comments" class="gap row">
+                        <div class="col-md-12">
+
+
+                            <div id="comment-form" class="gap">
+                                <h3 class="main-title">Leave a comment</h3>
+                                <hr>
+                                <div id="disqus_thread"></div>
+                                <script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://prajwol-kc-com-np.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+
+                                </script>
+                                <noscript>Please enable JavaScript to view the <a
+                                        href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+                                </noscript>
+
+                            </div><!--/#comment-form-->
+                            <!--  <div class="post-navigation">
+                                  <a class="pull-left btn btn-lg btn-primary btn-outlined" href="#">Older Posts</a>
+                                  <a class="pull-right btn btn-lg btn-primary btn-outlined" href="#">Newer Posts</a>
+                              </div>-->
+                        </div><!--/#comments-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}

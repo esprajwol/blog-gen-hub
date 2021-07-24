@@ -6,3 +6,5 @@
 ```
 python render.py
 ```
+
+#### The build files will be under build folder
